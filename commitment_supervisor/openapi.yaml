@@ -1,0 +1,285 @@
+openapi: 3.0.0
+info:
+  title: Monitoring Application API
+  version: 1.0.0
+paths:
+  /supervisor/deploySupervisor:
+    post:
+      summary: deploy a new supervisor
+      operationId: deploy
+      parameters:
+        - name: connectionPointType
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Supervisor deployed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "deployed"
+                  details:
+                    type: string
+                    example: "Supervisor deployed"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/scopeBegin:
+    post:
+      summary: notify a scopeBegin to the supervisor
+      operationId: scopeBegin
+      responses:
+        "201":
+          description: scopeBegin has been sent successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "commitment started"
+                  details:
+                    type: string
+                    example: "Timed Commitment created"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/scopeEnd:
+    post:
+      summary: notify a scopeEnd to the supervisor
+      operationId: scopeEnd
+      responses:
+        "201":
+          description: scopeEnd has been sent successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "commitment terminated"
+                  details:
+                    type: string
+                    example: "Timed Commitment terminated"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/cancelInstance:
+    post:
+      summary: cancel the istance of the Timed Commitment
+      operationId: cancelInstance
+      responses:
+        "200":
+          description: Instance cancelled successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Cancelled"
+                  details:
+                    type: string
+                    example: "Existing instance of the Timed Commitment cancelled"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/getStatus:
+    get:
+      summary: get the global status of a Timed Commitment
+      operationId: getStatus
+      responses:
+        "200":
+          description: returns the global status of the Timed Commitment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+
+  /commitments/create:
+    post:
+      summary: create a new istance of a Timed Commitment
+      operationId: createCommitment
+      responses:
+        "201":
+          description: Timed Commitment created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                    example: "Active"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /commitments/{commitmentId}/cancel:
+    post:
+      summary: cancel a Timed Commitment
+      operationId: cancelCommitment
+      parameters:
+        - name: commitmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Timed Commitment cancelled successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+  /commitments/{commitmentId}/terminate:
+    post:
+      summary: terminate a Timed Commitment
+      operationId: terminateCommitment
+      parameters:
+        - name: commitmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Timed Commitment terminated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+  /commitments/{commitmentId}/suspend:
+    post:
+      summary: suspend a Timed Commitment
+      operationId: suspendCommitment
+      parameters:
+        - name: commitmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Timed Commitment suspended successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /commitments/{commitmentId}/reactivate:
+    post:
+      summary: reactivate a Timed Commitment
+      operationId: reactivateCommitment
+      parameters:
+        - name: commitmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Timed Commitment reactivated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /commitments/{commitmentId}/release:
+    post:
+      summary: release a Timed Commitment
+      operationId: releaseCommitment
+      parameters:
+        - name: commitmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Timed Commitment released successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /commitments/{commitmentId}/getStatus:
+    get:
+      summary: get the status of a single instance of the Timed Commitment
+      operationId: getCommitmentStatus
+      parameters:
+        - name: commitmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: returns the status of a single instance of the Timed Commitment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string

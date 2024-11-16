@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: Supervisor Monitoring API
+  version: 1.0.0
+paths:
+  /supervisor/deploy:
+    post:
+      summary: Deploy a new supervisor
+      operationId: deploySupervisor
+      responses:
+        "201":
+          description: Supervisor deployed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "deployed"
+                  details:
+                    type: string
+                    example: "Supervisor deployed"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/scopeBegin:
+    post:
+      summary: Notify a scopeBegin to the supervisor
+      operationId: scopeBegin
+      responses:
+        "201":
+          description: scopeBegin has been sent successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "commitment started"
+                  details:
+                    type: string
+                    example: "Timed Commitment created"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/scopeEnd:
+    post:
+      summary: Notify a scopeEnd to the supervisor
+      operationId: scopeEnd
+      responses:
+        "201":
+          description: scopeEnd has been sent successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "commitment terminated"
+                  details:
+                    type: string
+                    example: "Timed Commitment terminated"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/cancelInstance:
+    post:
+      summary: Cancel the instance of the Timed Commitment
+      operationId: cancelInstance
+      responses:
+        "200":
+          description: Instance cancelled successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Cancelled"
+                  details:
+                    type: string
+                    example: "Existing instance of the Timed Commitment cancelled"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+  /supervisor/getStatus:
+    get:
+      summary: Get the global status of the Timed Commitments
+      operationId: getStatus
+      responses:
+        "200":
+          description: Returns the global status of the Timed Commitment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "active"
+                  details:
+                    type: string
+                    example: "There is an active Timed Commitment"
+                  links:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Link"
+
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
