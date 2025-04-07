@@ -1,6 +1,6 @@
 # How to run:
 
-This thesis project implements a system based on **Camunda Platform 8** for orchestration. It includes BPMN processes modeled using **Camunda Modeler**, a **Node.js** backend that handles REST calls from the BPMN processe to the supervisor service, and a **MongoDB** NoSQL database for data persistence.
+This thesis project implements a system based on **Camunda Platform 8** for orchestration. It includes BPMN processes modeled using **Camunda Modeler**, a **Node.js** backend that handles REST calls from the BPMN processes to the supervisor service, and a **MongoDB** NoSQL database for data persistence.
 
 ---
 
