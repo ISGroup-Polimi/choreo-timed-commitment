@@ -1,6 +1,6 @@
 # How to run:
 
-This thesis project implements a system based on **Camunda Platform 8** for orchestration. It includes two BPMN processes modeled using **Camunda Modeler**, a **Node.js** backend that handles REST calls from the processes, and a **MongoDB** NoSQL database for data persistence.
+This thesis project implements a system based on **Camunda Platform 8** for orchestration. It includes BPMN processes modeled using **Camunda Modeler**, a **Node.js** backend that handles REST calls from the BPMN processe to the supervisor service, and a **MongoDB** NoSQL database for data persistence.
 
 ---
 
@@ -59,6 +59,7 @@ This command launches the full Camunda 8 stack, including:
 1. Open **Camunda Modeler**.
 2. Go to **Zeebe deployment settings**.
 3. Set the **Zeebe Gateway Address** to:
+4. Open the A_sidecar.bpmn and the B_sidecar.bpmn located in each folder representing the Connection-Point type.
 
 ```
 localhost:26500
