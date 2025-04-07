@@ -29,8 +29,7 @@ Before setting up the system, make sure you have the following tools installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
+git clone <https://github.com/ISGroup-Polimi/choreo-timed-commitment.git>
 ```
 
 ---
