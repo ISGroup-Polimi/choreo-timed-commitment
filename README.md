@@ -64,7 +64,7 @@ This command launches the full Camunda 8 stack, including:
 localhost:26500
 ```
 
-4. Now you can deploy your BPMN processes directly to the running Camunda instance.
+4. Now you can deploy the BPMN sidecar processes directly to the running Camunda instance.
 
 ---
 
@@ -78,9 +78,9 @@ npm install
 
 ---
 
-### 5. Start the Node.js Backend
+### 5. Start the Node.js commitment/supervisor services
 
-In the same directory as `app.js`, start the backend server:
+In the same directory as `app.js`, start the commitment/supervisor services:
 
 ```bash
 npm start
@@ -93,9 +93,9 @@ This starts the Node.js service, which listens for REST calls initiated by the B
 ### 6. Interact with the System
 
 - You can now deploy and start BPMN processes from the **Camunda Modeler**.
-- Processes can communicate with the backend via REST.
+- Processes can communicate with the supervisor service via REST.
 - Use **Camunda Tasklist** at [http://localhost:8080](http://localhost:8080) to view and complete user tasks.
-- MongoDB is used to store and retrieve data processed by the backend.
+- MongoDB is used to store and retrieve data processed by the supervisor process.
 
 ---
 
@@ -103,9 +103,9 @@ This starts the Node.js service, which listens for REST calls initiated by the B
 
 ## Final Notes
 
-- Ensure Docker containers are running before deploying processes or starting backend services.
+- Ensure Docker containers are running before deploying processes or starting supervisor services.
 - You can monitor running process instances via **Camunda Operate**.
 - Human tasks are managed through **Tasklist**.
-- Backend services must be active for workflows to complete successfully.
+- Supervisor and Commitment services must be active for workflows to complete successfully.
 
 
